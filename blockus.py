@@ -1,10 +1,6 @@
 
 import time
-
-
-def effaceEcran ():
-    for i in range (1,100) :
-        print("\n")
+from console import *
 
 
 def number_to_letter(number):
@@ -58,17 +54,6 @@ def initGrille (grille) :
         grille [ligne][20]='* '
 
     #grille [pos_balle_x][pos_balle_y]='O'
-
-    
-    
-# Affiche le rectangle d'etoiles et la balle (tout ceci en meme
-# temps et non pas le rectangle puis la balle...) 
-
-def afficheGrille (grille) : 
-    for ligne in range (21) :
-        for colonne in range (21) :
-            print (grille[ligne][colonne],end="")
-        print(" ")
     
     
 def possitionnerPiece(grille, posX, posY):
@@ -140,7 +125,7 @@ deplacement_y=1;  # vecteur de deplacement de la balle
 
 initGrille (grille) ;
 
-afficheGrille(grille)
+console_afficheGrille(grille)
 
 s='*'
 while (s!='s') :
@@ -170,6 +155,6 @@ while (s!='s') :
     else:
         possitionnerPiece(grille,x,y)
         
-    afficheGrille(grille);
+    console_afficheGrille(grille);
     s=input("Appuyez sur la touche entrée ou 's' pour sortir... ")
         
