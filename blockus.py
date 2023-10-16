@@ -33,7 +33,7 @@ def initGrille (grille) :
             grille[0][i+1]= str(number_to_letter(i-9) + " ")
     
     for ligne in range (1,20) :
-        for colonne in range (20) :
+        for colonne in range (1,20) :
             grille[ligne][colonne]='  '
      
         
@@ -61,13 +61,13 @@ def possitionnerPiece(grille, posX, posY):
     grille [posY][posX] = 'O '
 
 def verifierAngle(grille, posX, posY):
-    if grille[posY-1][posX+1] == 'O': #Diag Haut Droite
+    if grille[posY-1][posX+1] == 'O ': #Diag Haut Droite
         return True
-    elif grille[posY-1][posX-1] == 'O': #Diag Haut Gauche
+    elif grille[posY-1][posX-1] == 'O ': #Diag Haut Gauche
         return True
-    elif grille[posY+1][posX+1] == 'O': #Diag Bas Droite
+    elif grille[posY+1][posX+1] == 'O ': #Diag Bas Droite
         return True
-    elif grille[posY+1][posX-1] == 'O': #Diag Bas Gauche
+    elif grille[posY+1][posX-1] == 'O ': #Diag Bas Gauche
         return True
     elif posX == 2 and posY == 2:
         return True
@@ -93,18 +93,30 @@ def verifierCote(grille, posX, posY):
     return True
 
 def selectionnerUnePiece():
-    piece = input("1 0; 2 00, 3 000, 4 0000")
+    piece = input("1 0; 2 00, 3 000, 4 0000 :")
     if piece == "1":
-        return 1
+        return 0
     elif piece == "2":
-        return 2
+        return 1
     elif piece == "3":
-        return 3
+        return 2
     elif piece == "4":
-        return 4
+        return 3
 
-def verifierPiece():
-    piece = selectionnerUnePiece()
+def verifierPiece(x,y):
+    #piece = selectionnerUnePiece()
+    piece = 0
+    #for i in range(0,piece):
+    cote = verifierCote(grille, x+piece, y)
+    angle = verifierAngle(grille, x+piece, y)
+    
+    if (cote == False) or (angle == False):
+        print("invalide")
+        return
+    
+    #for i in range(0,piece):
+    possitionnerPiece(grille,x+piece,y)
+    
     
     
 ##################################
@@ -147,13 +159,7 @@ while (s!='s') :
         y = int(y) + 1
            
     
-    cote = verifierCote(grille, x, y)
-    angle = verifierAngle(grille, x, y)
-    
-    if (cote == False) or (angle == False):
-        print("invalide")
-    else:
-        possitionnerPiece(grille,x,y)
+    verifierPiece(x, y)
         
     console_afficheGrille(grille);
     s=input("Appuyez sur la touche entrée ou 's' pour sortir... ")
