@@ -119,19 +119,19 @@ def selectionnerUnePiece():
     elif piece == "4":
         return 3
 
-def verifierPiece(x,y):
+def verifierPiece(x,y,joueur=1):
     #piece = selectionnerUnePiece()
     piece = 0
     #for i in range(0,piece):
-    cote = verifierCote(grille, x, y)
-    angle = verifierAngle(grille, x, y)
+    cote = verifierCote(grille, x, y, joueur)
+    angle = verifierAngle(grille, x, y, joueur)
     
     if (cote == False) or (angle == False):
         print("invalide")
         return
     
     #for i in range(piece):
-    possitionnerPiece(grille,x+piece,y)
+    possitionnerPiece(grille,x+piece,y, joueur)
     
     
     
@@ -153,23 +153,26 @@ while (s!='s') :
     #effaceEcran ()
     #afficheGrille(grille);
 	
-    x = input("Entree la ligne ")
-    x = x.lower()
-    if 'a' <= x <= 'z':
-        x = ord(x) - 86
-    else:
-        x = int(x) + 1
-        
-    y = input("Entrer la colonne ")
-    y = y.lower()
-    if 'a' <= y <= 'z':
-        y = ord(y) - 86
-    else:
-        y = int(y) + 1
-           
+    for i in range(1,3):
     
-    verifierPiece(x, y)
+        x = input("Entree la ligne ")
+        x = x.lower()
+        if 'a' <= x <= 'z':
+            x = ord(x) - 86
+        else:
+            x = int(x) + 1
+            
+        y = input("Entrer la colonne ")
+        y = y.lower()
+        if 'a' <= y <= 'z':
+            y = ord(y) - 86
+        else:
+            y = int(y) + 1
+               
         
-    console_afficheGrille(grille);
+        verifierPiece(x, y, i)
+            
+        console_afficheGrille(grille)
+    
     s=input("Appuyez sur la touche entrée ou 's' pour sortir... ")
         
