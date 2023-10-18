@@ -3,6 +3,10 @@ import time
 from console import *
 
 
+# ANSI escape codes for text colors
+GREEN = '\033[92m'
+RED = '\033[91m'
+
 def number_to_letter(number):
     if 1 <= number <= 26:
         return chr(ord('a') + number - 1)
@@ -22,7 +26,6 @@ def letter_to_number(letter):
 def initGrille (grille) :
     # initialiser la grille à vide :
       
-    
     i=0
     for i in range(1,20):
         if (i <  10):
@@ -56,18 +59,25 @@ def initGrille (grille) :
     #grille [pos_balle_x][pos_balle_y]='O'
     
     
-def possitionnerPiece(grille, posX, posY):
-    
-    grille [posY][posX] = 'O '
+def possitionnerPiece(grille, posX, posY,joueur=1):
+    if joueur == 1:
+        grille [posY][posX] = '0 '
+    elif joueur == 2:
+        grille [posY][posX] = '# '
 
-def verifierAngle(grille, posX, posY):
-    if grille[posY-1][posX+1] == 'O ': #Diag Haut Droite
+def verifierAngle(grille, posX, posY, joueur=1):
+    if joueur == 1:
+        char = '0 '
+    if joueur == 2:
+        char = '# '
+        
+    if grille[posY-1][posX+1] == char: #Diag Haut Droite
         return True
-    elif grille[posY-1][posX-1] == 'O ': #Diag Haut Gauche
+    elif grille[posY-1][posX-1] == char: #Diag Haut Gauche
         return True
-    elif grille[posY+1][posX+1] == 'O ': #Diag Bas Droite
+    elif grille[posY+1][posX+1] == char: #Diag Bas Droite
         return True
-    elif grille[posY+1][posX-1] == 'O ': #Diag Bas Gauche
+    elif grille[posY+1][posX-1] == char: #Diag Bas Gauche
         return True
     elif posX == 2 and posY == 2:
         return True
@@ -80,14 +90,20 @@ def verifierAngle(grille, posX, posY):
     
     return False
    
-def verifierCote(grille, posX, posY):
-    if grille[posY][posX+1] == 'O': #Droite
+def verifierCote(grille, posX, posY,joueur=1):
+    
+    if joueur == 1:
+        char = '0 '
+    if joueur == 2:
+        char = '# '
+    
+    if grille[posY][posX+1] == char: #Droite
         return False
-    elif grille[posY][posX-1] == 'O': #Gauche
+    elif grille[posY][posX-1] == char: #Gauche
         return False
-    elif grille[posY-1][posX] == 'O': #Bas
+    elif grille[posY-1][posX] == char: #Bas
         return False
-    elif grille[posY+1][posX] == 'O': #haut
+    elif grille[posY+1][posX] == char: #haut
         return False
     
     return True
@@ -107,14 +123,14 @@ def verifierPiece(x,y):
     #piece = selectionnerUnePiece()
     piece = 0
     #for i in range(0,piece):
-    cote = verifierCote(grille, x+piece, y)
-    angle = verifierAngle(grille, x+piece, y)
+    cote = verifierCote(grille, x, y)
+    angle = verifierAngle(grille, x, y)
     
     if (cote == False) or (angle == False):
         print("invalide")
         return
     
-    #for i in range(0,piece):
+    #for i in range(piece):
     possitionnerPiece(grille,x+piece,y)
     
     
@@ -127,13 +143,6 @@ def verifierPiece(x,y):
 grille= [[' ' for i in range(21)] for j in range(21)] 	# grille qui pourra contenir
                 # 3 sortes de caractères : '*' ou 'O' ou le caractere espace ' '
 
-    
-pos_balle_x=3   # position  balle au depart
-pos_balle_y=4     
-
-
-deplacement_x=1
-deplacement_y=1;  # vecteur de deplacement de la balle
 
 initGrille (grille) ;
 
