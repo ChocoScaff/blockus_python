@@ -119,7 +119,7 @@ def selectionnerUnePiece():
     elif piece == "4":
         return 3
 
-def verifierPiece(x,y,joueur=1):
+def verifierPiece(x,y,grille,joueur=1):
     #piece = selectionnerUnePiece()
     piece = 0
     #for i in range(0,piece):
@@ -144,8 +144,8 @@ async def send_receive_matrix(reader, writer):
 
     initGrille (grille) 
     
-    s='*'
-    while (s!='s') :
+    round=1
+    while True:
         s=input("Appuyez sur la touche entrée ou 's' pour sortir... ")
         
         x = input("Entree la ligne ")
@@ -162,22 +162,23 @@ async def send_receive_matrix(reader, writer):
         else:
             y = int(y) + 1
                
-        verifierPiece(x, y)
+        verifierPiece(x, y, grille)
 
-        matrix_json = json.dumps(grille)
-        writer.write(matrix_json.encode())
+        grille_json = json.dumps(grille)
+        writer.write(grille_json.encode())
         print("Matrice envoyée au serveur")
         console_afficheGrille(grille)
         await writer.drain()
 
         data = await reader.read(1024)
-        matrix_json = data.decode()
-        grille = json.loads(matrix_json)
+        grille_json = data.decode()
+        grille = json.loads(grille_json)
         print("Matrice reçue du serveur :")
         console_afficheGrille(grille)
+        round=+1
 
 async def main():
-    reader, writer = await asyncio.open_connection('127.0.0.1', 8888)
+    reader, writer = await asyncio.open_connection('127.0.0.1', 8889)
     
     await send_receive_matrix(reader, writer)
 

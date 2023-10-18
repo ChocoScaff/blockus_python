@@ -119,7 +119,7 @@ def selectionnerUnePiece():
     elif piece == "4":
         return 3
 
-def verifierPiece(x,y,joueur=1):
+def verifierPiece(x,y,grille,joueur=1):
     #piece = selectionnerUnePiece()
     piece = 0
     #for i in range(0,piece):
@@ -143,9 +143,16 @@ async def handle_client(reader, writer):
                     # 3 sortes de caractères : '*' ou 'O' ou le caractere espace ' '
 
     initGrille (grille) 
-    
-    s='*'
-    while (s!='s') :
+    round=1
+    while True:
+        data = await reader.read(1024)
+        if not data:
+            break
+        grille_json = data.decode()
+        grille = json.loads(grille_json)
+        print("Matrice reçue du client :")
+        console_afficheGrille(grille)
+        
         s=input("Appuyez sur la touche entrée ou 's' pour sortir... ")
         
         x = input("Entree la ligne ")
@@ -162,16 +169,20 @@ async def handle_client(reader, writer):
         else:
             y = int(y) + 1
                
-        verifierPiece(x, y, i)
-
-        matrix_json = json.dumps(grille)
-        writer.write(matrix_json.encode())
+        verifierPiece(x, y, grille)
+        
+        grille_json = json.dumps(grille)
+        writer.write(grille_json.encode())
         await writer.drain()
         print("Matrice modifiée renvoyée au client")
+        round +=1
+        console_afficheGrille(grille)
+        
+    writer.close()
 
 async def main():
     server = await asyncio.start_server(
-        handle_client, '127.0.0.1', 8888)
+        handle_client, '127.0.0.1', 8889)
 
     addr = server.sockets[0].getsockname()
     print(f'Serveur en attente de connexions sur {addr}')
@@ -183,5 +194,4 @@ async def main():
 # programme principal :
 ##################################
 
-#client 
 asyncio.run(main())
