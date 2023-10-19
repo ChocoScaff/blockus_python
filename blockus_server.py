@@ -2,6 +2,9 @@
 import time
 from console import *
 
+import asyncio
+import json
+
 
 # ANSI escape codes for text colors
 GREEN = '\033[92m'
@@ -25,7 +28,7 @@ def letter_to_number(letter):
 
 def initGrille (grille) :
     # initialiser la grille à vide :
-      
+    
     i=0
     for i in range(1,20):
         if (i <  10):
@@ -39,11 +42,9 @@ def initGrille (grille) :
         for colonne in range (1,20) :
             grille[ligne][colonne]='  '
      
-        
     for colonne in range (1,21) :
         grille[1][colonne]='* '    #'* '
         grille[20][colonne]='* '
-
 
     for ligne in range (1,21) :
         if (ligne <  10):
@@ -57,7 +58,6 @@ def initGrille (grille) :
         grille [ligne][20]='* '
 
     #grille [pos_balle_x][pos_balle_y]='O'
-    
     
 def possitionnerPiece(grille, posX, posY,joueur=1):
     if joueur == 1:
@@ -119,7 +119,7 @@ def selectionnerUnePiece():
     elif piece == "4":
         return 3
 
-def verifierPiece(x,y,joueur=1):
+def verifierPiece(x,y,grille,joueur=1):
     #piece = selectionnerUnePiece()
     piece = 0
     #for i in range(0,piece):
@@ -133,35 +133,35 @@ def verifierPiece(x,y,joueur=1):
     #for i in range(piece):
     possitionnerPiece(grille,x+piece,y, joueur)
     
-    
-    
+##################################    
+#client    
 ##################################
-# programme principal :
-##################################
+
+async def handle_client(reader, writer):
     
-    
-grille= [[' ' for i in range(21)] for j in range(21)] 	# grille qui pourra contenir
-                # 3 sortes de caractères : '*' ou 'O' ou le caractere espace ' '
+    grille= [[' ' for i in range(21)] for j in range(21)] 	# grille qui pourra contenir
+                    # 3 sortes de caractères : '*' ou 'O' ou le caractere espace ' '
 
-
-initGrille (grille) ;
-
-console_afficheGrille(grille)
-
-s='*'
-while (s!='s') :
-    #effaceEcran ()
-    #afficheGrille(grille);
-	
-    for i in range(1,3):
-    
+    initGrille (grille) 
+    round=1
+    while True:
+        data = await reader.read(1024)
+        if not data:
+            break
+        grille_json = data.decode()
+        grille = json.loads(grille_json)
+        print("Matrice reçue du client :")
+        console_afficheGrille(grille)
+        
+        s=input("Appuyez sur la touche entrée ou 's' pour sortir... ")
+        
         x = input("Entree la ligne ")
         x = x.lower()
         if 'a' <= x <= 'z':
             x = ord(x) - 86
         else:
             x = int(x) + 1
-            
+                   
         y = input("Entrer la colonne ")
         y = y.lower()
         if 'a' <= y <= 'z':
@@ -169,10 +169,29 @@ while (s!='s') :
         else:
             y = int(y) + 1
                
+        verifierPiece(x, y, grille)
         
-        verifierPiece(x, y, i)
-            
+        grille_json = json.dumps(grille)
+        writer.write(grille_json.encode())
+        await writer.drain()
+        print("Matrice modifiée renvoyée au client")
+        round +=1
         console_afficheGrille(grille)
-    
-    s=input("Appuyez sur la touche entrée ou 's' pour sortir... ")
         
+    writer.close()
+
+async def main():
+    server = await asyncio.start_server(
+        handle_client, '127.0.0.1', 8889)
+
+    addr = server.sockets[0].getsockname()
+    print(f'Serveur en attente de connexions sur {addr}')
+
+    async with server:
+        await server.serve_forever()
+    
+##################################
+# programme principal :
+##################################
+
+asyncio.run(main())
