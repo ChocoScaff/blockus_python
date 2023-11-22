@@ -13,14 +13,20 @@ import json
 
 async def send_receive_matrix(reader, writer):
     
-    grille= [[' ' for i in range(21)] for j in range(21)] 	# grille qui pourra contenir
+    #grille= [[' ' for i in range(21)] for j in range(21)] 	# grille qui pourra contenir
                     # 3 sortes de caractères : '*' ou 'O' ou le caractere espace ' '
 
-    initGrille (grille) 
+    #initGrille (grille) 
     
     round=1
     while True:
         s=input("Appuyez sur la touche entrée ou 's' pour sortir... ")
+        
+        if round==1:
+        # Modifier la matrice (ajout d'une valeur)
+            #matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+            grille = [[' '] * 22 for _ in range(22)]
+            initGrille (grille)
         
         x = input("Entree la ligne ")
         x = x.lower()
@@ -42,6 +48,8 @@ async def send_receive_matrix(reader, writer):
         writer.write(grille_json.encode())
         print("Matrice envoyée au serveur")
         console_afficheGrille(grille)
+        #for row in grille:
+        #    print(row)
         print("Attente du serveur")
         await writer.drain()
         
@@ -50,6 +58,8 @@ async def send_receive_matrix(reader, writer):
         grille = json.loads(grille_json)
         print("Matrice reçue du serveur :")
         console_afficheGrille(grille)
+        #for row in grille:
+        #    print(row)
         round=+1
 
 async def main():
