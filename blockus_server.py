@@ -1,4 +1,6 @@
-
+##
+#@file blockus_server.py
+#
 import time
 from console import *
 
@@ -11,12 +13,15 @@ import json
 GREEN = '\033[92m'
 RED = '\033[91m'
 
+##
+#
 def number_to_letter(number):
     if 1 <= number <= 26:
         return chr(ord('a') + number - 1)
     else:
         return "Invalid input: Number out of range"
-
+##
+#
 def letter_to_number(letter):
     if len(letter) == 1 and 'a' <= letter <= 'z':
         return ord(letter) - ord('a') + 1
@@ -28,7 +33,8 @@ def letter_to_number(letter):
 ##################################    
 #server    
 ##################################
-
+##
+#
 async def handle_client(reader, writer):
     
     #grille= [[' ' for i in range(21)] for j in range(21)] 	# grille qui pourra contenir
@@ -76,7 +82,9 @@ async def handle_client(reader, writer):
         round +=1
         
     writer.close()
-
+    
+##
+#
 async def main():
     server = await asyncio.start_server(
         handle_client, '127.0.0.1', 8889)

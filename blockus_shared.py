@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Nov 22 14:03:09 2023
-
-@author: PC
-"""
+##
+#Created on Wed Nov 22 14:03:09 2023
+#
+#@file blockus_shared.py
+#
 
 import time
 from console import *
@@ -12,7 +11,7 @@ import asyncio
 import json
 
 
-# Initialise la grille de facon a ce qu'elle contienne ce qui se trouve 
+## Initialise la grille de facon a ce qu'elle contienne ce qui se trouve 
 # a la figure de droite 
 def initGrille (grille) :
     # initialiser la grille à vide :
@@ -44,27 +43,32 @@ def initGrille (grille) :
             
         grille [ligne][1]='* '
         grille [ligne][20]='* '
-    
+
+##
+#
 def number_to_letter(number):
     if 1 <= number <= 26:
         return chr(ord('a') + number - 1)
     else:
         return "Invalid input: Number out of range"
-
+##
+#
 def letter_to_number(letter):
     if len(letter) == 1 and 'a' <= letter <= 'z':
         return ord(letter) - ord('a') + 1
     else:
         return "Invalid input: Not a lowercase letter"
 
-
-    
+##
+#
 def possitionnerPiece(grille, posX, posY,joueur=1):
     if joueur == 1:
         grille [posY][posX] = '0 '
     elif joueur == 2:
         grille [posY][posX] = '# '
 
+##
+#
 def verifierAngle(grille, posX, posY, joueur=1):
     if joueur == 1:
         char = '0 '
@@ -89,7 +93,9 @@ def verifierAngle(grille, posX, posY, joueur=1):
         return True
     
     return False
-   
+
+##
+#
 def verifierCote(grille, posX, posY,joueur=1):
     
     if joueur == 1:
@@ -108,6 +114,8 @@ def verifierCote(grille, posX, posY,joueur=1):
     
     return True
 
+##
+#
 def selectionnerUnePiece():
     piece = input("1 0; 2 00, 3 000, 4 0000 :")
     if piece == "1":
@@ -118,7 +126,8 @@ def selectionnerUnePiece():
         return 2
     elif piece == "4":
         return 3
-
+##
+#
 def verifierPiece(x,y,grille,joueur=1):
     #piece = selectionnerUnePiece()
     piece = 0
