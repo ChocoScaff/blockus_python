@@ -40,14 +40,14 @@ async def send_receive_matrix(reader, writer):
         else:
             y = int(y) + 1
                    
-        verifierPiece(x, y, grille)
+        verifierPiece(x, y, grille, 1)
     
         grille_json = json.dumps(grille)
         writer.write(grille_json.encode())
         print("Matrice envoyée au serveur")
         console_afficheGrille(grille)
-        for row in grille:
-            print(row)
+        #for row in grille:
+        #    print(row)
         
         print("Attente du serveur")
             
@@ -58,8 +58,8 @@ async def send_receive_matrix(reader, writer):
         grille = json.loads(grille_json)
         print("Matrice reçue du serveur :")
         console_afficheGrille(grille)
-        for row in grille:
-            print(row)
+        #for row in grille:
+        #    print(row)
         round=+1
 
 async def main():

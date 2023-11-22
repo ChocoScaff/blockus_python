@@ -46,8 +46,8 @@ async def handle_client(reader, writer):
         grille = json.loads(grille_json)
         print("Matrice reçue du client :")
         console_afficheGrille(grille)
-        for row in grille:
-            print(row)
+        #for row in grille:
+        #    print(row)
         s=input("Appuyez sur la touche entrée ou 's' pour sortir... ")
         
         x = input("Entree la ligne ")
@@ -64,15 +64,15 @@ async def handle_client(reader, writer):
         else:
             y = int(y) + 1
                
-        verifierPiece(x, y, grille)
+        verifierPiece(x, y, grille,2)
         
         grille_json = json.dumps(grille)
         writer.write(grille_json.encode())
         await writer.drain()
         print("Matrice modifiée renvoyée au client")
         console_afficheGrille(grille)
-        for row in grille:
-            print(row)
+        #for row in grille:
+        #    print(row)
         round +=1
         
     writer.close()
