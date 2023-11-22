@@ -1,3 +1,6 @@
+##
+#@file blockus_client.py
+#
 
 import time
 from console import *
@@ -10,7 +13,8 @@ import json
 ##################################    
 #client    
 ##################################
-
+##
+#
 async def send_receive_matrix(reader, writer):
     
     #grille= [[' ' for i in range(21)] for j in range(21)] 	# grille qui pourra contenir
@@ -61,7 +65,9 @@ async def send_receive_matrix(reader, writer):
         #for row in grille:
         #    print(row)
         round=+1
-
+        
+##
+#
 async def main():
     reader, writer = await asyncio.open_connection('127.0.0.1', 8889)
     
