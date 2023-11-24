@@ -2,6 +2,7 @@
 #@file console.py
 #
 
+from colorama import Fore, Back, Style
 
 ##
 #
@@ -10,7 +11,12 @@ def console_afficheGrille (grille) :
     temps et non pas le rectangle puis la )  """
     for ligne in range (21) :
         for colonne in range (21) :
-            print (grille[ligne][colonne],end="")
+            if grille[ligne][colonne] == '0 ':
+                print (Fore.RED + str(grille[ligne][colonne]),end="")
+            elif: grille[ligne][colonne] == '# ':
+                print (Fore.GREEN + str(grille[ligne][colonne]),end="")
+            else:
+                print (Fore.WHITE + str(grille[ligne][colonne]),end="")
         print(" ")
 
 ##
