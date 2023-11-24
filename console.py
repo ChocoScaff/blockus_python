@@ -13,7 +13,7 @@ def console_afficheGrille (grille) :
         for colonne in range (21) :
             if grille[ligne][colonne] == '0 ':
                 print (Fore.RED + str(grille[ligne][colonne]),end="")
-            elif: grille[ligne][colonne] == '# ':
+            elif grille[ligne][colonne] == '# ':
                 print (Fore.GREEN + str(grille[ligne][colonne]),end="")
             else:
                 print (Fore.WHITE + str(grille[ligne][colonne]),end="")
