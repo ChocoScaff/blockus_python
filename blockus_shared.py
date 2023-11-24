@@ -7,13 +7,14 @@
 
 
 # Importation des bibliothèques nécessaires
+# Imports
 import time
 from console import *
-
 import asyncio
 import json
 
 # bibliothèque pieces
+# Imports
 from pieces import Piece, pieces
 
 

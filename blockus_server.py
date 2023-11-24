@@ -1,17 +1,14 @@
 ##
 #@file blockus_server.py
 #
+
+# Imports
 import time
 from console import *
-
 from blockus_shared import *
 import asyncio
 import json
 
-
-# ANSI escape codes for text colors
-GREEN = '\033[92m'
-RED = '\033[91m'
 
 ##
 #
