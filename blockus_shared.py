@@ -131,7 +131,7 @@ def verifierCote(grille, posX, posY,joueur=1):
 
 ##
 #
-def selectionnerUnePiece():
+def selectionnerUnePiece(): #TODO remove ?
     piece = input("1 0; 2 00, 3 000, 4 0000 :")
     if piece == "1":
         return 0
@@ -144,7 +144,7 @@ def selectionnerUnePiece():
 ##
 #
 def verifierPiece(x,y,grille,joueur=1,piece = [[1,1,1],[1,0,0]] ):
-    #piece = selectionnerUnePiece()
+    #piece = selectionnerUnePiece()  #TODO remove ?
     #for i in range(0,piece):
     cote = verifierCote(grille, x, y, joueur)
     angle = verifierAngle(grille, x, y, joueur)
@@ -153,6 +153,5 @@ def verifierPiece(x,y,grille,joueur=1,piece = [[1,1,1],[1,0,0]] ):
         print("invalide")
         return
     
-    #for i in range(piece):
     possitionnerPiece(grille,x,y, joueur, piece)
     
