@@ -69,11 +69,17 @@ def letter_to_number(letter):
 
 ##
 #
-def possitionnerPiece(grille, posX, posY,joueur=1):
+def possitionnerPiece(grille, posX, posY,joueur=1, piece=[1] ):
     if joueur == 1:
-        grille [posY][posX] = '0 '
+        symbol = '0 '
     elif joueur == 2:
-        grille [posY][posX] = '# '
+        symbol = '# '
+    else:
+        symbol = 'X '  # You can add more players and symbols if needed
+
+    for i in range(len(piece)):   #len(piece
+        for j in range(len(piece)):
+            grille[posY + i][posX + j] = symbol
 
 ##
 #
@@ -136,9 +142,8 @@ def selectionnerUnePiece():
         return 3
 ##
 #
-def verifierPiece(x,y,grille,joueur=1):
+def verifierPiece(x,y,grille,joueur=1,piece = [1,1,1]):
     #piece = selectionnerUnePiece()
-    piece = 0
     #for i in range(0,piece):
     cote = verifierCote(grille, x, y, joueur)
     angle = verifierAngle(grille, x, y, joueur)
@@ -148,5 +153,5 @@ def verifierPiece(x,y,grille,joueur=1):
         return
     
     #for i in range(piece):
-    possitionnerPiece(grille,x+piece,y, joueur)
+    possitionnerPiece(grille,x,y, joueur, piece)
     
