@@ -2,6 +2,7 @@
 #@file console.py
 #
 
+# Imports
 from colorama import Fore, Back, Style
 
 ##

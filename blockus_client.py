@@ -2,9 +2,9 @@
 #@file blockus_client.py
 #
 
+# Imports
 import time
 from console import *
-
 from blockus_shared import *
 import asyncio
 import json

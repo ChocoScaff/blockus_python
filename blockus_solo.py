@@ -2,9 +2,9 @@
 #@file blockus_solo.py
 #
 
+# Imports
 import time
 from console import *
-
 from blockus_shared import *
 from pieces import Piece
 
