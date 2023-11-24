@@ -1,14 +1,22 @@
+
 ##
 #Created on Wed Nov 22 14:03:09 2023
 #
 #@file blockus_shared.py
 #
 
+
+# Importation des bibliothèques nécessaires
 import time
 from console import *
 
 import asyncio
 import json
+
+# bibliothèque pieces
+from pieces import Piece, pieces
+
+
 
 
 ## Initialise la grille de facon a ce qu'elle contienne ce qui se trouve 
