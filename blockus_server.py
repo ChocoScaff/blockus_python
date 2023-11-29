@@ -8,6 +8,7 @@ from console import *
 from blockus_shared import *
 import asyncio
 import json
+from pieces import Piece
 
 
 ##
@@ -71,8 +72,11 @@ async def handle_client(reader, writer):
             y = ord(y) - 86
         else:
             y = int(y) + 1
-               
-        verifierPiece(x, y, grille,2)
+
+        pieceChoisie = int(input("Selectionner une pièce"))
+        pieceInstance = Piece(pieceChoisie,1)
+        data = pieceInstance.getPiece()          
+        verifierPiece(x, y, grille, 2, data)
         
         grille_json = json.dumps(grille)
         writer.write(grille_json.encode())
@@ -89,7 +93,7 @@ async def handle_client(reader, writer):
 # 
 async def main():
     server = await asyncio.start_server(
-        handle_client, '127.0.0.1', 8889)
+        handle_client, '127.0.0.1', 8888)
 
     addr = server.sockets[0].getsockname()
     print(f'Serveur en attente de connexions sur {addr}')
