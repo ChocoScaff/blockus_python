@@ -11,6 +11,7 @@ import json
 
 
 ##
+# @param number
 #
 def number_to_letter(number):
     if 1 <= number <= 26:
@@ -18,6 +19,7 @@ def number_to_letter(number):
     else:
         return "Invalid input: Number out of range"
 ##
+# @param letter
 #
 def letter_to_number(letter):
     if len(letter) == 1 and 'a' <= letter <= 'z':
@@ -31,6 +33,9 @@ def letter_to_number(letter):
 #server    
 ##################################
 ##
+# @param reader
+# @param writer
+# 
 #
 async def handle_client(reader, writer):
     
@@ -81,7 +86,7 @@ async def handle_client(reader, writer):
     writer.close()
     
 ##
-#
+# 
 async def main():
     server = await asyncio.start_server(
         handle_client, '127.0.0.1', 8889)

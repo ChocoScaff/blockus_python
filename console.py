@@ -6,6 +6,7 @@
 from colorama import Fore, Back, Style
 
 ##
+# @param grille
 #
 def console_afficheGrille (grille) : 
     """Affiche le rectangle d'etoiles  (tout ceci en meme
