@@ -8,7 +8,7 @@ from console import *
 from blockus_shared import *
 import asyncio
 import json
-
+from pieces import Piece
 
 ##################################    
 #client    
@@ -43,8 +43,11 @@ async def send_receive_matrix(reader, writer):
             y = ord(y) - 86
         else:
             y = int(y) + 1
-                   
-        verifierPiece(x, y, grille, 1)
+
+        pieceChoisie = int(input("Selectionner une pièce"))
+        pieceInstance = Piece(pieceChoisie,1)
+        data = pieceInstance.getPiece()          
+        verifierPiece(x, y, grille, 1, data)
     
         grille_json = json.dumps(grille)
         writer.write(grille_json.encode())
@@ -69,7 +72,7 @@ async def send_receive_matrix(reader, writer):
 ##
 #
 async def main():
-    reader, writer = await asyncio.open_connection('127.0.0.1', 8889)
+    reader, writer = await asyncio.open_connection('127.0.0.1', 8888)
     
     await send_receive_matrix(reader, writer)
 

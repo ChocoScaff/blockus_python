@@ -31,7 +31,11 @@ while True:
     else:
         y = int(y) + 1
 
-    verifierPiece(x, y, grille, 1, [[1,1],[0]])
+    pieceChoisie = int(input("Selectionner une pièce"))
+    pieceInstance = Piece(pieceChoisie,1)
+    data = pieceInstance.getPiece()
+    verifierPiece(x, y, grille, 1, data )
+    #verifierPiece(x, y, grille, 1, [[1],[1]] )
 
     console_afficheGrille(grille)
 

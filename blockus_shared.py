@@ -15,7 +15,7 @@ import json
 
 # bibliothèque pieces
 # Imports
-from pieces import Piece, pieces
+#from pieces import Piece, pieces
 
 
 
