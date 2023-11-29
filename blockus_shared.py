@@ -158,7 +158,7 @@ def verifierPiece(x,y,grille,joueur=1,piece = [[1,1,1],[1,0,0]] ):
        for j in range(len(piece[i])):
            if piece[i][j] == 1:
                 if angle == False:
-                    angle = verifierAngle(grille, x, y, joueur)
+                    angle = verifierAngle(grille, x+i, y+j, joueur)
 
     if angle == False:
         print("invalide")
@@ -172,7 +172,7 @@ def verifierPiece(x,y,grille,joueur=1,piece = [[1,1,1],[1,0,0]] ):
 
                 if (cote == False):
                     print("invalide")
-                    #return
+                    return
     
     possitionnerPiece(grille,x,y, joueur, piece)
     
