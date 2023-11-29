@@ -151,14 +151,28 @@ def verifierCote(grille, posX, posY,joueur=1):
 # @param joueur
 # @param piece
 def verifierPiece(x,y,grille,joueur=1,piece = [[1,1,1],[1,0,0]] ):
-    #piece = selectionnerUnePiece()  #TODO remove ?
-    #for i in range(0,piece):
-    cote = verifierCote(grille, x, y, joueur)
-    angle = verifierAngle(grille, x, y, joueur)
     
-    if (cote == False) or (angle == False):
+    #Check si un angle est bon
+    angle = False
+    for i in range(len(piece)):
+       for j in range(len(piece[i])):
+           if piece[i][j] == 1:
+                if angle == False:
+                    angle = verifierAngle(grille, x, y, joueur)
+
+    if angle == False:
         print("invalide")
         return
+
+    #Check si tout les cotés sot bon
+    for i in range(len(piece)):
+       for j in range(len(piece[i])):
+           if piece[i][j] == 1:
+                cote = verifierCote(grille, x+i, y+j, joueur)
+
+                if (cote == False):
+                    print("invalide")
+                    #return
     
     possitionnerPiece(grille,x,y, joueur, piece)
     
