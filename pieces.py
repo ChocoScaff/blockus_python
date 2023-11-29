@@ -1,3 +1,5 @@
+##
+# @file pieces.py
 # -*- coding: utf-8 -*-
 """
 Created on Wed Nov 22 15:30:56 2023
@@ -6,6 +8,9 @@ Created on Wed Nov 22 15:30:56 2023
 """
 # pieces.py
 
+##
+# @class Piece
+#
 class Piece:
     def __init__(self, shape, color):
         self.shape = shape  # Liste représentant la forme de la pièce

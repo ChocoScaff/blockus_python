@@ -20,8 +20,9 @@ from pieces import Piece, pieces
 
 
 
-## Initialise la grille de facon a ce qu'elle contienne ce qui se trouve 
-# a la figure de droite 
+## 
+# Initialise la grille de facon a ce qu'elle contienne ce qui se trouve a la figure de droite 
+# @param grille
 def initGrille (grille) :
     # initialiser la grille à vide :
     
@@ -54,14 +55,15 @@ def initGrille (grille) :
         grille [ligne][20]='* '
 
 ##
-#
+# @param number
 def number_to_letter(number):
     if 1 <= number <= 26:
         return chr(ord('a') + number - 1)
     else:
         return "Invalid input: Number out of range"
 ##
-#
+# transforme letter to number e.g A=11 B=12
+# @param letter
 def letter_to_number(letter):
     if len(letter) == 1 and 'a' <= letter <= 'z':
         return ord(letter) - ord('a') + 1
@@ -70,6 +72,11 @@ def letter_to_number(letter):
 
 ##
 #
+# @param grille
+# @param posX
+# @param posY
+# @param joueur 
+# @param piece 
 def possitionnerPiece(grille, posX, posY, joueur=1, piece = [[1,1,1],[1,0,0]] ):
     if joueur == 1:
         symbol = '0 '
@@ -85,6 +92,10 @@ def possitionnerPiece(grille, posX, posY, joueur=1, piece = [[1,1,1],[1,0,0]] ):
 
 ##
 #
+# @param grille
+# @param posX
+# @param posY
+# @param joueur
 def verifierAngle(grille, posX, posY, joueur=1):
     if joueur == 1:
         char = '0 '
@@ -112,6 +123,10 @@ def verifierAngle(grille, posX, posY, joueur=1):
 
 ##
 #
+# @param grille
+# @param posX
+# @param posY
+# @param joueur
 def verifierCote(grille, posX, posY,joueur=1):
     
     if joueur == 1:
@@ -131,19 +146,10 @@ def verifierCote(grille, posX, posY,joueur=1):
     return True
 
 ##
-#
-def selectionnerUnePiece(): #TODO remove ?
-    piece = input("1 0; 2 00, 3 000, 4 0000 :")
-    if piece == "1":
-        return 0
-    elif piece == "2":
-        return 1
-    elif piece == "3":
-        return 2
-    elif piece == "4":
-        return 3
-##
-#
+# @param x
+# @param y
+# @param joueur
+# @param piece
 def verifierPiece(x,y,grille,joueur=1,piece = [[1,1,1],[1,0,0]] ):
     #piece = selectionnerUnePiece()  #TODO remove ?
     #for i in range(0,piece):
