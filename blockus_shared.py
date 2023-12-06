@@ -18,8 +18,6 @@ import json
 #from pieces import Piece, pieces
 
 
-
-
 ## 
 # Initialise la grille de facon a ce qu'elle contienne ce qui se trouve a la figure de droite 
 # @param grille

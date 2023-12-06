@@ -46,7 +46,9 @@ async def send_receive_matrix(reader, writer):
 
         pieceChoisie = int(input("Selectionner une pièce"))
         pieceInstance = Piece(pieceChoisie,1)
-        data = pieceInstance.getPiece()          
+        data = pieceInstance.getPiece()
+        rotation = int(input("Selectionner la rotation : "))
+        pieceInstance.rotatePiece(rotation)         
         verifierPiece(x, y, grille, 1, data)
     
         grille_json = json.dumps(grille)

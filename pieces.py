@@ -6,6 +6,7 @@ Created on Wed Nov 22 15:30:56 2023
 
 @author: jradzied
 """
+
 # pieces.py
 
 ##
@@ -21,7 +22,7 @@ class Piece:
         self.shape = shape  # Liste représentant la forme de la pièce
         self.color = color  # Couleur de la pièce
 
-       #see ref img/blockus.png
+        #see ref img/blockus.png
         if self.shape == 1:
            self.piece = [[1],[0]]  # Carré 1x1
         elif self.shape == 2:
@@ -68,9 +69,19 @@ class Piece:
     ##
     #    
     def getPiece(self):
-       return self.piece     
-              
-       
+       return self.piece
+            
+    ##
+    #         
+    def rotatePiece(self,k):
+        # Modulo 4 to handle rotations in multiples of 90 degrees
+        k = k % 4
+
+        for _ in range(k):
+            # Rotate the piece by 90 degrees clockwise
+            self.piece = [list(row)[::-1] for row in zip(*self.piece)]
+
+
 
 # Liste des pièces possibles
 pieces = [
