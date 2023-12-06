@@ -37,7 +37,33 @@ class Piece:
         elif self.shape == 7:
            self.piece = [[1,0],[1,1],[1,0]] 
         elif self.shape == 8:
-           self.piece = [[1,1],[1,1]]    
+           self.piece = [[1,1],[1,1]]
+        elif self.shape == 9:
+           self.piece = [[1,1,0],[0,1,1]]
+        elif self.shape == 10:
+           self.piece = [[1],[1],[1],[1],[1]]
+        elif self.shape == 11:
+           self.piece = [[0,1],[0,1],[0,1],[1,1]]
+        elif self.shape == 12:
+           self.piece = [[0,1],[0,1],[1,1],[1,0]]
+        elif self.shape == 13:
+           self.piece = [[0,1],[1,1],[1,1]]
+        elif self.shape == 14:
+           self.piece = [[1,1],[0,1],[1,1]]  
+        elif self.shape == 15:
+           self.piece = [[1,0],[1,1],[1,0],[1,0]]
+        elif self.shape == 16:
+           self.piece = [[0,1,0],[0,1,0],[1,1,1]]
+        elif self.shape == 17:
+           self.piece = [[1,0,0],[1,0,0],[1,1,1]]
+        elif self.shape == 18:
+           self.piece = [[1,1,0],[0,1,1],[0,0,1]]
+        elif self.shape == 19:
+           self.piece = [[1,0,0],[1,1,1],[0,0,1]]
+        elif self.shape == 20:
+           self.piece = [[1,0,0],[1,1,1],[0,1,0]]
+        elif self.shape == 21:
+           self.piece = [[0,1,0],[1,1,1],[0,1,0]]
 
     ##
     #    
