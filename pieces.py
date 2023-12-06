@@ -75,6 +75,10 @@ class Piece:
     #         
     def rotatePiece(self,k):
         # Modulo 4 to handle rotations in multiples of 90 degrees
+        
+        if self.shape == 1:
+           return
+
         k = k % 4
 
         for _ in range(k):
