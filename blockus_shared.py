@@ -132,13 +132,13 @@ def verifierCote(grille, posX, posY,joueur=1):
     if joueur == 2:
         char = '# '
     
-    if grille[posY][posX+1] == char: #Droite
+    if grille[posY][posX+1] != '  ' and grille[posY][posX+1] != '* ': #Droite
         return False
-    elif grille[posY][posX-1] == char: #Gauche
+    elif grille[posY][posX-1] != '  ' and grille[posY][posX-1] != '* ': #Gauche
         return False
-    elif grille[posY-1][posX] == char: #Bas
+    elif grille[posY-1][posX] != '  ' and grille[posY-1][posX] != '* ': #Bas
         return False
-    elif grille[posY+1][posX] == char: #haut
+    elif grille[posY+1][posX] != '  ' and grille[posY+1][posX] != '* ': #haut
         return False
     
     return True
@@ -150,6 +150,12 @@ def verifierCote(grille, posX, posY,joueur=1):
 # @param piece
 def verifierPiece(x,y,grille,joueur=1,piece = [[1,1,1],[1,0,0]] ):
     
+    #saturation grille
+    if x < 0 or y < 0 or x + len(piece[0]) > len(grille) or y + len(piece) > len(grille[0]):
+        print("Saturation de la grille")
+        return 
+
+
     #Check si un angle est bon
     angle = False
     for i in range(len(piece)):
