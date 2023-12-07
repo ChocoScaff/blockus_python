@@ -5,6 +5,8 @@ import pygame
 # Colors
 white = (255, 255, 255)
 black = (0, 0, 0)
+red = (255, 0, 0)
+green = (0, 255, 0)
 
 ##
 # size
@@ -25,8 +27,9 @@ class gui:
         pygame.init()
         self.screen = pygame.display.set_mode((WIDH_SCREEN, HEIGHT_SCREEN))
         self.clock = pygame.time.Clock()
+        self.event = pygame.event.wait()
     
-    def updateGrille(self,grille):
+    def drawGrille(self):
          # Draw the grid
         self.screen.fill("white")
 
@@ -37,7 +40,22 @@ class gui:
 
         # Update the display
         pygame.display.flip()
+        self.event = pygame.event.wait()
+    
+    def drawPiece(self,grille):
+        for ligne in range (1,21) :
+            for colonne in range (1,21) :
+                if grille[ligne][colonne] == '0 ':
+                    rect = pygame.Rect((colonne-2) * cell_size, (ligne-2) * cell_size, cell_size, cell_size)
+                    pygame.draw.rect(self.screen, red, rect, 0)  # 1 is the border thickness
+                elif grille[ligne][colonne] == '# ':
+                    rect = pygame.Rect((colonne-2) * cell_size, (ligne-2) * cell_size, cell_size, cell_size)
+                    pygame.draw.rect(self.screen, green, rect, 0)  # 1 is the border thickness
         
+        # Update the display
+        pygame.display.flip()
+        self.event = pygame.event.wait()
+
     
     def event(self):
         keys = pygame.key.get_pressed()

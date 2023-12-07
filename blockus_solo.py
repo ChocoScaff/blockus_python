@@ -13,7 +13,7 @@ grille = [[' ' for i in range(21)] for _ in range(21)]
 initGrille(grille)
 
 screen = gui()
-screen.updateGrille(grille)
+screen.drawGrille()
 
 round = 1
 while True:
@@ -42,6 +42,6 @@ while True:
     #verifierPiece(x, y, grille, 1, [[1],[1]] )
 
     console_afficheGrille(grille)
-    screen.updateGrille(grille)
+    screen.drawPiece(grille)
 
     round = +1
