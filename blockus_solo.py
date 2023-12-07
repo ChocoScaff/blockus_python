@@ -7,11 +7,11 @@ import time
 from console import *
 from blockus_shared import *
 from pieces import Piece
-
+from gui import gui
 
 grille = [[' ' for i in range(21)] for _ in range(21)]
 initGrille(grille)
-
+screen = gui()
 
 round = 1
 while True:
