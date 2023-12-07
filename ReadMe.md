@@ -11,6 +11,9 @@ Le joueur peut placer 21 pièce diffèrente
 
 ![alt text](https://github.com/ChocoScaff/blockus_python/blob/master/img/blockus.png)
 
+## Demo
+
+![alt text](https://github.com/ChocoScaff/blockus_python/blob/master/img/morpion.GIF)
 
 ## library
 
