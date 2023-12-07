@@ -21,14 +21,19 @@ cell_size = 80
 # @class gui
 class gui:
 
+    ##
+    #
     def __init__(self):
         # pygame setup
         print("Init Pygame")
         pygame.init()
         self.screen = pygame.display.set_mode((WIDH_SCREEN, HEIGHT_SCREEN))
+        pygame.display.set_caption("Morpion")
         self.clock = pygame.time.Clock()
-        self.event = pygame.event.wait()
+        #self.event = pygame.event.wait()
     
+    ##
+    #
     def drawGrille(self):
          # Draw the grid
         self.screen.fill("white")
@@ -40,8 +45,11 @@ class gui:
 
         # Update the display
         pygame.display.flip()
-        self.event = pygame.event.wait()
+        #self.event = pygame.event.wait()
     
+    ##
+    #
+    #@param grille
     def drawPiece(self,grille):
         for ligne in range (1,21) :
             for colonne in range (1,21) :
@@ -54,12 +62,15 @@ class gui:
         
         # Update the display
         pygame.display.flip()
-        self.event = pygame.event.wait()
+        #self.event = pygame.event.wait()
 
-    
+    ##
+    #
     def event(self):
         keys = pygame.key.get_pressed()
     
+    ##
+    #
     def __del__(self):
         pygame.quit()
     
