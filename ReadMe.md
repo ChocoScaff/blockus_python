@@ -17,5 +17,5 @@ Le joueur peut placer 21 pièces diffèrente
 
 ## library
 
-`-colorama` color on console 
+`-colorama` color on console \
 `-pygame` gui

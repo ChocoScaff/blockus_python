@@ -70,7 +70,9 @@ class Piece:
     #    
     def getPiece(self):
        return self.piece
-            
+
+       
+
     ##
     #         
     def rotatePiece(self,k):
