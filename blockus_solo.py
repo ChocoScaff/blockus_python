@@ -33,9 +33,9 @@ while True:
     else:
         y = int(y) + 1
 
-    pieceChoisie = int(input("Selectionner une pièce : "))
+    pieceChoisie = int(input("Selectionner une pièce 1-21 : "))
     pieceInstance = Piece(pieceChoisie,1)
-    rotation = int(input("Selectionner la rotation : "))
+    rotation = int(input("Selectionner la rotation (0-3) 1 = 90deg : "))
     pieceInstance.rotatePiece(rotation)
     data = pieceInstance.getPiece()
     verifierPiece(x, y, grille, 1, data )

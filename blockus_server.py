@@ -73,10 +73,10 @@ async def handle_client(reader, writer):
         else:
             y = int(y) + 1
 
-        pieceChoisie = int(input("Selectionner une pièce"))
+        pieceChoisie = int(input("Selectionner une pièce 1-21 :"))
         pieceInstance = Piece(pieceChoisie,1)
         data = pieceInstance.getPiece()
-        rotation = int(input("Selectionner la rotation : "))
+        rotation = int(input("Selectionner la rotation (0-3) 1 = 90deg : "))
         pieceInstance.rotatePiece(rotation)          
         verifierPiece(x, y, grille, 2, data)
         
