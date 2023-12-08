@@ -52,7 +52,6 @@ async def handle_client(reader, writer):
     round=1
     while True:
 
-        screen.wait_event()
         
         print("Attente du client :")
         data = await reader.read(4096)
@@ -65,6 +64,7 @@ async def handle_client(reader, writer):
         screen.get_event()
         console_afficheGrille(grille)
         screen.drawPiece(grille)
+        #screen.wait_event()
 
         #for row in grille:
         #    print(row)
@@ -99,9 +99,8 @@ async def handle_client(reader, writer):
         screen.get_event()
         console_afficheGrille(grille)
         screen.drawPiece(grille)
+        #screen.wait_event()
 
-        #for row in grille:
-        #    print(row)
         round +=1
         
     writer.close()

@@ -14,11 +14,10 @@ initGrille(grille)
 
 screen = gui()
 screen.drawGrille()
+#screen.poll_event()
 
 round = 1
 while True:
-
-    screen.wait_event()
 
     s = input("Appuyez sur la touche entrée ou 's' pour sortir... ")
 
@@ -47,5 +46,6 @@ while True:
     screen.get_event()
     console_afficheGrille(grille)
     screen.drawPiece(grille)
+    #screen.wait_event()
 
     round = +1

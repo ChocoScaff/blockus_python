@@ -35,10 +35,17 @@ class gui:
     #
     def wait_event(self):
         self.event = pygame.event.wait()
-
+        
+    ##
+    #
     def get_event(self):
         self.event = pygame.event.get()
 
+    ##
+    #
+    def poll_event(self):
+        self.event = pygame.event.poll()
+        
     ##
     #
     def drawGrille(self):
