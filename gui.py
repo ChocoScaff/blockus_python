@@ -30,8 +30,15 @@ class gui:
         self.screen = pygame.display.set_mode((WIDH_SCREEN, HEIGHT_SCREEN))
         pygame.display.set_caption("Morpion")
         self.clock = pygame.time.Clock()
+        
+    ##
+    #
+    def wait_event(self):
         self.event = pygame.event.wait()
-    
+
+    def get_event(self):
+        self.event = pygame.event.get()
+
     ##
     #
     def drawGrille(self):
@@ -50,8 +57,8 @@ class gui:
     ##
     #   
     def mouseEvent(self):
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
+        for self.event in pygame.event.get():
+            if self.event.type == pygame.MOUSEBUTTONDOWN:
                 self.mouseX, self.mouseY = pygame.mouse.get_pos()  
 
     ##

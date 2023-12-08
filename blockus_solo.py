@@ -17,6 +17,9 @@ screen.drawGrille()
 
 round = 1
 while True:
+
+    screen.wait_event()
+
     s = input("Appuyez sur la touche entrée ou 's' pour sortir... ")
 
     x = input("Entree la colonne ")
@@ -41,6 +44,7 @@ while True:
     verifierPiece(x, y, grille, 1, data )
     #verifierPiece(x, y, grille, 1, [[1],[1]] )
 
+    screen.get_event()
     console_afficheGrille(grille)
     screen.drawPiece(grille)
 
