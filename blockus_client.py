@@ -33,8 +33,6 @@ async def send_receive_matrix(reader, writer):
     round=1
     while True:
 
-        screen.wait_event()
-
         s=input("Appuyez sur la touche entrée ou 's' pour sortir... ")
         
         
@@ -66,6 +64,7 @@ async def send_receive_matrix(reader, writer):
         screen.get_event()
         console_afficheGrille(grille)
         screen.drawPiece(grille)
+        #screen.wait_event()
         
         print("Attente du serveur")
             
@@ -79,7 +78,7 @@ async def send_receive_matrix(reader, writer):
         screen.get_event()
         console_afficheGrille(grille)
         screen.drawPiece(grille)
-
+        #screen.wait_event()
         #for row in grille:
         #    print(row)
         round=+1
