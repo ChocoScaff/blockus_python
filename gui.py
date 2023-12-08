@@ -28,7 +28,7 @@ class gui:
         print("Init Pygame")
         pygame.init()
         self.screen = pygame.display.set_mode((WIDH_SCREEN, HEIGHT_SCREEN))
-        pygame.display.set_caption("Morpion")
+        pygame.display.set_caption("Blockus")
         self.clock = pygame.time.Clock()
         
     ##

@@ -9,6 +9,7 @@ from blockus_shared import *
 import asyncio
 import json
 from pieces import Piece
+from gui import gui
 
 ##################################    
 #client    
@@ -25,8 +26,15 @@ async def send_receive_matrix(reader, writer):
     grille = [[' ' for i in range(21)] for _ in range(21)]
     initGrille(grille)
     
+
+    screen = gui()
+    screen.drawGrille()
+
     round=1
     while True:
+
+        screen.wait_event()
+
         s=input("Appuyez sur la touche entrée ou 's' pour sortir... ")
         
         
@@ -54,9 +62,10 @@ async def send_receive_matrix(reader, writer):
         grille_json = json.dumps(grille)
         writer.write(grille_json.encode())
         print("Matrice envoyée au serveur")
+
+        screen.get_event()
         console_afficheGrille(grille)
-        #for row in grille:
-        #    print(row)
+        screen.drawPiece(grille)
         
         print("Attente du serveur")
             
@@ -66,7 +75,11 @@ async def send_receive_matrix(reader, writer):
         grille_json = data.decode()
         grille = json.loads(grille_json)
         print("Matrice reçue du serveur :")
+
+        screen.get_event()
         console_afficheGrille(grille)
+        screen.drawPiece(grille)
+
         #for row in grille:
         #    print(row)
         round=+1

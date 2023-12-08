@@ -9,6 +9,7 @@ from blockus_shared import *
 import asyncio
 import json
 from pieces import Piece
+from gui import gui
 
 
 ##
@@ -44,8 +45,14 @@ async def handle_client(reader, writer):
                     # 3 sortes de caractères : '*' ou 'O' ou le caractere espace ' '
 
     #initGrille (grille) 
+
+    screen = gui()
+    screen.drawGrille()
+
     round=1
     while True:
+
+        screen.wait_event()
         
         print("Attente du client :")
         data = await reader.read(4096)
@@ -54,7 +61,11 @@ async def handle_client(reader, writer):
         grille_json = data.decode()
         grille = json.loads(grille_json)
         print("Matrice reçue du client :")
+
+        screen.get_event()
         console_afficheGrille(grille)
+        screen.drawPiece(grille)
+
         #for row in grille:
         #    print(row)
         s=input("Appuyez sur la touche entrée ou 's' pour sortir... ")
@@ -84,7 +95,11 @@ async def handle_client(reader, writer):
         writer.write(grille_json.encode())
         await writer.drain()
         print("Matrice modifiée renvoyée au client")
+
+        screen.get_event()
         console_afficheGrille(grille)
+        screen.drawPiece(grille)
+
         #for row in grille:
         #    print(row)
         round +=1
