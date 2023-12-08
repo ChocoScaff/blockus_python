@@ -10,12 +10,12 @@ green = (0, 255, 0)
 
 ##
 # size
-WIDH_SCREEN = 800
-HEIGHT_SCREEN = 800
+WIDH_SCREEN = 640
+HEIGHT_SCREEN = 640
 ROW = 20
 COLUMNS = 20
-grid_size = 20
-cell_size = 80
+grid_size = 18
+cell_size = 30
 
 ##
 # @class gui
