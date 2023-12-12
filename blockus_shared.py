@@ -80,6 +80,10 @@ def possitionnerPiece(grille, posX, posY, joueur=1, piece = [[1,1,1],[1,0,0]] ):
         symbol = '0 '
     elif joueur == 2:
         symbol = '# '
+    elif joueur == 3:
+        symbol = 'Z'
+    elif joueur == 4:
+        symbol = 'W'
     else:
         symbol = 'X '  # You can add more players and symbols if needed
 
