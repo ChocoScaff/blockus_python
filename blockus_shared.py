@@ -24,6 +24,10 @@ import json
 def initGrille (grille) :
     # initialiser la grille à vide :
     
+    for ligne in range (1,21) :
+        for colonne in range (1,21) :
+            grille[ligne][colonne]='  '
+
     i=0
     for i in range(1,20):
         if (i <  10):
@@ -33,15 +37,11 @@ def initGrille (grille) :
         else:
             grille[0][i+1]= str(number_to_letter(i-9) + " ")
     
-    for ligne in range (1,20) :
-        for colonne in range (1,20) :
-            grille[ligne][colonne]='  '
-     
-    for colonne in range (1,21) :
-        grille[1][colonne]='* '    #'* '
+    for colonne in range (1,20) :
+        grille[1][colonne]='* '    
         grille[20][colonne]='* '
 
-    for ligne in range (1,21) :
+    for ligne in range (1,20) :
         if (ligne <  10):
             grille [ligne+1][0]=ligne
         elif (ligne >= 19):
@@ -51,6 +51,9 @@ def initGrille (grille) :
             
         grille [ligne][1]='* '
         grille [ligne][20]='* '
+    
+    grille [20][20]='* '
+
 
 ##
 # @param number
@@ -147,6 +150,19 @@ def verifierCote(grille, posX, posY,joueur=1):
     
     return True
 
+
+##
+#
+# @param grille
+# @param posX
+# @param posY
+def verifierSuperPosition(grille, posX, posY):
+        
+    if grille[posY][posX] != '  ': 
+        return False
+    else:
+        return True
+
 ##
 # @param x
 # @param y
@@ -159,7 +175,6 @@ def verifierPiece(x,y,grille,joueur=1,piece = [[1,1,1],[1,0,0]] ):
         print("Saturation de la grille")
         return 
 
-
     #Check si un angle est bon
     angle = False
     for i in range(len(piece)):
@@ -169,7 +184,7 @@ def verifierPiece(x,y,grille,joueur=1,piece = [[1,1,1],[1,0,0]] ):
                     angle = verifierAngle(grille, x+i, y+j, joueur)
 
     if angle == False:
-        print("invalide")
+        print("invalide angle")
         return
 
     #Check si tout les cotés sot bon
@@ -179,8 +194,17 @@ def verifierPiece(x,y,grille,joueur=1,piece = [[1,1,1],[1,0,0]] ):
                 cote = verifierCote(grille, x+i, y+j, joueur)
 
                 if (cote == False):
-                    print("invalide")
+                    print("invalide coté")
                     return
     
+    #check si une pièce déjà presente
+    ''' 
+    for i in range(len(piece)):
+       for j in range(len(piece[i])): 
+            superPosition = verifierSuperPosition(grille,  x+i, y+j)
+            if superPosition == False:
+                print("Invalide Superposition")
+                return
+    '''
     possitionnerPiece(grille,x,y, joueur, piece)
     
